@@ -1,14 +1,21 @@
-const ContactListItem = ({id, name, phone, onRemove}) => {
-    return <li>
-        {name}: {phone} <button onClick ={()=>onRemove(id)}>X</button>
-    </li>
+import css from './ContactList.module.css'
+
+const ContactListItem = ({ id, name, number, onRemove }) => {
+    return (
+      <li key={id} className={css.li}>
+        {name}: {number}{' '}
+        <button className={css.button} onClick={() => onRemove(id)}>
+          X
+        </button>
+      </li>
+    );
 }
 
 const ContactList = ({ contacts, onRemove }) => {
     if (contacts.length === 0) return null
     return (
-        <ul>
-            {contacts.map(contact => <ContactListItem {...contacts} onRemove={onRemove}/>)}
+        <ul className={css.ul}>
+            {contacts.map(contact => <ContactListItem {...contact} onRemove={onRemove}/>)}
         </ul>
     )
 }
